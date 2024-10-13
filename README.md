@@ -39,3 +39,6 @@ Converter = Новый ("Addin.MedIgor.ImageConverter");
 КонецПопытки;
 КартинкаPNG.Записать("C:\Pfiles\1.png");
 ```
+
+# Сборка
+см. https://github.com/medigor/rust-build-scripts
