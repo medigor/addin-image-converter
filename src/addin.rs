@@ -1,6 +1,6 @@
 use std::{error::Error, io::Cursor};
 
-use addin1c::{name, AddinResult, MethodInfo, Methods, PropInfo, SimpleAddin, Variant};
+use addin1c::{cstr1c, AddinResult, CStr1C, MethodInfo, Methods, PropInfo, SimpleAddin, Variant};
 use image::ImageFormat;
 
 pub struct Addin {
@@ -61,8 +61,8 @@ impl Addin {
 }
 
 impl SimpleAddin for Addin {
-    fn name() -> &'static [u16] {
-        name!("ImageConverter")
+    fn name() -> &'static CStr1C {
+        cstr1c!("ImageConverter")
     }
 
     fn save_error(&mut self, err: Option<Box<dyn Error>>) {
@@ -72,11 +72,11 @@ impl SimpleAddin for Addin {
     fn methods() -> &'static [addin1c::MethodInfo<Self>] {
         &[
             MethodInfo {
-                name: name!("ConvertFile"),
+                name: cstr1c!("ConvertFile"),
                 method: Methods::Method2(Self::convert_file),
             },
             MethodInfo {
-                name: name!("ConvertBuffer"),
+                name: cstr1c!("ConvertBuffer"),
                 method: Methods::Method3(Self::convert_buffer),
             },
         ]
@@ -84,7 +84,7 @@ impl SimpleAddin for Addin {
 
     fn properties() -> &'static [PropInfo<Self>] {
         &[PropInfo {
-            name: name!("LastError"),
+            name: cstr1c!("LastError"),
             getter: Some(Self::last_error),
             setter: None,
         }]
